@@ -1,0 +1,78 @@
+load(input('Ange datafil: ','s'))
+tic;
+[m,n] = size(A);
+
+% Skapa nix, dvs indexvektorn för ickebasvariabler
+nix = setdiff([1:n],bix);
+
+% Skapa initial partition
+B = A(:,bix);
+N = A(:,nix);
+cB = c(bix,:);
+cN = c(nix,:);
+xB = bix;
+xN = nix;
+%rc_min = 0;
+opt=0;
+iter = 0;
+while opt==0
+    iter = iter + 1;
+
+    % Beräkna reducerad kostnad och högerled
+    % Beräkna mest negativ reducerad kostnad, rc_min,
+    % och index för inkommande variabel, inkix
+
+    invB = inv(B);
+    xB = invB * b;
+    xN = 0;
+    y = transpose(transpose(cB) * invB);
+    z = transpose(b) * y;
+    for r = 1:size(cN)
+        if r == 1
+            rc_min = cN(r);
+            inkix = r;
+        end
+        if rc_min > cN(r)
+            rc_min = cN(r);
+            inkix = r;
+        end
+    end
+    if rc_min >= -1.0E-10
+        opt=1;
+        disp('Optimum');
+    else
+        % Beräkna inkommande kolumn, a
+        % --------
+        a = N(:,inkix);
+        
+        if max(a) <= 0 
+            disp('Obegränsad lösning');
+        else
+            % Bestäm utgående variabel, utgix
+            % -------
+            for r = 1:size(a)
+                if 
+                    rc_min = cN(r);
+                    inkix = r;
+                end
+            end 
+
+
+            fprintf('Iter: %d, z: %f, rc_min: %f, ink: %d, utg: %d \n',iter,z,rc_min,nix(inkix),bix(utgix));
+
+            % Konstruera ny partitionering mha ink och utg
+            % --------
+            
+            
+            
+        end
+    end
+end
+
+toc
+fprintf('z: %f\n',z);
+x = zeros(n,1);
+x(bix) = xb;
+fprintf('sum(x-xcheat): %f\n',sum(x-xcheat));
+fprintf('z-zcheat: %f\n',z-zcheat);
+
