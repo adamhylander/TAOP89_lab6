@@ -54,8 +54,8 @@ while opt==0
                 if xB(i) ~= 0 % kolla så att vi dividerar på noll
                     if xB(i)/a(i) > 0 % kollar att kvoten av xB(i)/a(i) inte är negativ (ej tillåten)
                         if xB(i)/a(i) < minValue % om xB(i)/a(i) är mindre än minValue vill vi:
-                            minValue = xB(i)/a(i); % Ansätt minValue till det värdet 
-                            utgix = i; % och spåra vilken variabel som är utgående genom att sätta utgix till i
+                            minValue = xB(i)/a(i); 
+                            utgix = i;
                         end
                     end
                 end
